@@ -15,7 +15,7 @@ app.use(express.json());
 
 // Rutas products
 app.use("/api", productsRoutes);
-app.use("/api", categorysRoutes)
+app.use("/", categorysRoutes)
 
 // Rutas de autenticación
 app.use('/api/auth', authRoutes);
