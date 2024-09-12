@@ -14,7 +14,6 @@ router.get('/products', async (req,res) => {
     res.json(productAll);
 })
 
-router.use(authenticateToken);
 
 router.get('/products/:id', async (req,res) => {
     const productoId = await prisma.product.findFirst({
@@ -26,8 +25,10 @@ router.get('/products/:id', async (req,res) => {
         }
     })
     if (!productoId) return res.status(404).json({ error: "no se encontro na pri, njd...."})
-    res.json(productoId)
+        res.json(productoId)
 })
+
+router.use(authenticateToken);
 
 router.post('/products', async (req,res) => {
     const newProduct = await prisma.product.create({

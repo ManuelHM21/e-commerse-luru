@@ -1,5 +1,6 @@
 import { Router } from "express";
 import prisma from '../config/prismaClient.js';
+import authenticateToken from '../middlewares/authenticateToken.js';
 
 const router = Router()
 
@@ -11,5 +12,7 @@ router.get('/category', async (req,res) => {
     })
     res.json(categoryAll);
 })
+
+router.use(authenticateToken);
 
 export default router;
