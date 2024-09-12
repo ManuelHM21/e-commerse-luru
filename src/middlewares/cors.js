@@ -5,7 +5,8 @@ const ACCEPTED_ORIGINS = [
     'http://localhost:3000',
     'http://localhost:1234',
     'https://api-node-zpxl.onrender.com',
-    'https://api-node-aiwe.netlify.app'
+    'https://api-node-aiwe.netlify.app',
+    'https://elchocho.netlify.app/'
   ]
 
 export const corsMiddleware = ({acceptedOrigins = ACCEPTED_ORIGINS} = {} ) => cors({
