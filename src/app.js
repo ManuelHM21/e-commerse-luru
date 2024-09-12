@@ -12,11 +12,12 @@ const app = express();
 app.use(corsMiddleware())
 app.use(express.json());
 
-// Rutas de autenticación
-app.use('/api/auth', authRoutes);
 
 // Rutas products
 app.use("/api", productsRoutes);
 app.use("/api", categorysRoutes)
+
+// Rutas de autenticación
+app.use('/api/auth', authRoutes);
 
 export default app;
