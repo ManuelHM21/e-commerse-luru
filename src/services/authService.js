@@ -5,7 +5,7 @@ import sendVerificationEmail from '../utils/sendEmail.js';
 import jwt from 'jsonwebtoken';
 
 // Registro de usuario con token de verificación
-export const registerUser = async (email, password,  firstName, lastName, phone) => {
+export const registerUser = async (email, password) => {
   const hashedPassword = await bcrypt.hash(password, 10);
 
   // Crear usuario en la base de datos (sin verificar)
@@ -13,9 +13,6 @@ export const registerUser = async (email, password,  firstName, lastName, phone)
     data: {
       email,
       password: hashedPassword,
-      firstName, 
-      lastName, 
-      phone
     },
   });
 
