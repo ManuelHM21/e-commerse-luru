@@ -16,7 +16,6 @@ export const registerUser = async (email, password, firstName, lastName, phone) 
       firstName,
       lastName,
       phone
-
     },
   });
 
