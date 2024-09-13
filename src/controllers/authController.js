@@ -16,7 +16,7 @@ export const verify = async (req, res) => {
   const { token } = req.params;
   try {
     await authService.verifyUser(token);
-    res.redirect(`https://elchocho.netlify.app/login`);
+    res.redirect(`https://elchocho.netlify.app`);
   } catch (error) {
     res.status(400).json({ error: 'Token de verificación inválido o expirado' });
   }
