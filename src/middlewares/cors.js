@@ -1,6 +1,11 @@
 import cors from "cors";
 
-const ACCEPTED_ORIGINS = "*";
+const ACCEPTED_ORIGINS = [
+    'http://localhost:3000',
+    'http://localhost:5000',
+    'https://elchocho.netlify.app',
+    'https://e-commerse-luru.onrender.com'
+  ]
 
 export const corsMiddleware = ({acceptedOrigins = ACCEPTED_ORIGINS} = {} ) => cors({
     origin: (origin, callback) => {      
