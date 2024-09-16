@@ -19,7 +19,7 @@ export const verify = async (req, res) => {
     res.json({ message: 'Cuenta verificada con éxito' });
   } catch (error) {
     console.error(error);
-    res.status(400).json({ error: 'Token de verificación inválido o expirado' });
+    res.status(400).json({ error: 'Token de verificación inválido' });
   }
 };
 
