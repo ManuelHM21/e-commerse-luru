@@ -8,6 +8,7 @@ export const register = async (req, res) => {
     res.json({ message: 'Usuario registrado con éxito' });
   } catch (error) {
     console.error(error);
+    res.status(400).json({ error: error.message });
   }
 };
 
