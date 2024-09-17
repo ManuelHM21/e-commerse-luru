@@ -15,7 +15,8 @@ export const registerUser = async (email, password, firstName, lastName, phone) 
       password: hashedPassword,  
       firstName,
       lastName,
-      phone
+      phone,
+      isVerified: false
     },
   });
 
