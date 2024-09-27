@@ -37,6 +37,7 @@ export const verifyUser = async (token) => {
       where: { id: decoded.userId },
       data: { isVerified: true },
     });
+    
   } catch (error) {
     throw new Error('Token inválido o expirado');
   }

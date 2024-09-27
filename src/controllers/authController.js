@@ -2,10 +2,8 @@ import * as authService from '../services/authService.js';
 
 // Registro de usuario
 export const register = async (req, res) => {
+
   const { email, password, firstName, lastName, phone } = req.body;
-
-  console.log(email, password, firstName, lastName, phone);
-
   try {
     await authService.registerUser(email, password, firstName, lastName, phone);
     res.json({ message: 'Usuario registrado con éxito' });
