@@ -28,6 +28,7 @@ router.get('/products/:id', async (req,res) => {
         res.json(productoId)
 })
 
+router.use(authenticateToken);
 
 router.post('/products', async (req,res) => {
     const newProduct = await prisma.product.create({
@@ -37,7 +38,6 @@ router.post('/products', async (req,res) => {
 })
 
 
-router.use(authenticateToken);
 
 router.put('/products/:id', async (req,res) => {
     const productoUp = await prisma.product.update({
