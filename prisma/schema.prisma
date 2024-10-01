@@ -20,19 +20,20 @@ model User {
   firstName String? 
   lastName  String? 
   phone     String? 
-  
   isVerified  Boolean  @default(false)
 }
 
 model Product {
-  id Int @id @default(autoincrement())
-  name String @unique
-  price Int @default(0)
-  createAt DateTime @default(now())
-  stock Int @default(0)
-  category Category @relation(fields: [categoryId], references: [id])
-  categoryId Int 
+  id         Int       @id @default(autoincrement())
+  name       String    @unique
+  price      Int       @default(0)
+  createAt   DateTime  @default(now())
+  stock      Int       @default(0)
+  category   Category  @relation(fields: [categoryId], references: [id])
+  categoryId Int
+  imageUrl   String?
 }
+
 
 model Category {
   id Int @id @default(autoincrement())
