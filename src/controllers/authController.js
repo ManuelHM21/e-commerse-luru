@@ -2,10 +2,11 @@ import * as authService from '../services/authService.js';
 
 // Registro de usuario
 export const register = async (req, res) => {
-
   const { email, password, firstName, lastName, phone } = req.body;
+  const profileImage = req.file ? `/uploads/${req.file.filename}` : null; // Ruta de la imagen
+
   try {
-    await authService.registerUser(email, password, firstName, lastName, phone);
+    await authService.registerUser(email, password, firstName, lastName, phone, profileImage);
     res.json({ message: 'Usuario registrado con éxito' });
   } catch (error) {
     console.error(error);
@@ -29,11 +30,12 @@ export const verify = async (req, res) => {
 export const login = async (req, res) => {
   const { email, password } = req.body;
   try {
-    const token = await authService.loginUser(email, password);
-    res.json({ token , email });
+    // Desestructurar el objeto retornado por loginUser
+    const { token, profileImage, firstName } = await authService.loginUser(email, password);
+    
+    // Retornar los datos correctamente
+    res.json({ token, email, profileImage, firstName });
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
 };
-
-

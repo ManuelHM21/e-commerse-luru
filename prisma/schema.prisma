@@ -19,7 +19,8 @@ model User {
   password  String
   firstName String? 
   lastName  String? 
-  phone     String? 
+  phone     String?
+  profileImage String?
   isVerified  Boolean  @default(false)
 }
 

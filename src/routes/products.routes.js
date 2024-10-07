@@ -34,8 +34,6 @@ router.use(authenticateToken);
 // Ruta protegida para crear productos y subir imagen
 router.post('/products', authenticateToken, upload.single('image'), async (req, res) => {
     try {
-      console.log(req.file);  // Este log mostrará el archivo si llega correctamente
-      console.log(req.body);  // Este log mostrará los otros campos del formulario
     if (!req.file) {
         return res.status(400).json({ error: 'No se ha subido ninguna imagen' });
   }

@@ -5,7 +5,7 @@ import sendVerificationEmail from '../utils/sendEmail.js';
 import jwt from 'jsonwebtoken';
 
 // Registro de usuario con token de verificación
-export const registerUser = async (email, password, firstName, lastName, phone) => {
+export const registerUser = async (email, password, firstName, lastName, phone, profileImage) => {
   const hashedPassword = await bcrypt.hash(password, 10);
 
   // Crear usuario en la base de datos (sin verificar)
@@ -16,6 +16,7 @@ export const registerUser = async (email, password, firstName, lastName, phone) 
       firstName,
       lastName,
       phone,
+      profileImage,
       isVerified: false
     },
   });
@@ -26,6 +27,7 @@ export const registerUser = async (email, password, firstName, lastName, phone) 
   // Enviar correo de verificación
   await sendVerificationEmail(email, verificationToken);
 };
+
 
 // Verificar el token del correo electrónico
 export const verifyUser = async (token) => {
@@ -50,6 +52,8 @@ export const loginUser = async (email, password) => {
     where: { email },
   });
 
+  console.log(user);
+
   if (!user) {
     throw new Error('Usuario no encontrado');
   }
@@ -65,5 +69,12 @@ export const loginUser = async (email, password) => {
   }
 
   const token = generateToken(user.id);
-  return token;
+  const profileImage = user.profileImage;
+  const firstName = user.firstName;
+
+  return {
+    token,
+    profileImage,
+    firstName,
+  };
 };
