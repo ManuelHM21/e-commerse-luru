@@ -19,6 +19,7 @@ CREATE TABLE "Product" (
     "createAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "stock" INTEGER NOT NULL DEFAULT 0,
     "categoryId" INTEGER NOT NULL,
+    "imageUrl" TEXT,
 
     CONSTRAINT "Product_pkey" PRIMARY KEY ("id")
 );
