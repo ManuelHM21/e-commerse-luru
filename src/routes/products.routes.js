@@ -38,7 +38,7 @@ router.post('/products', authenticateToken, upload.single('image'), async (req, 
         return res.status(400).json({ error: 'No se ha subido ninguna imagen' });
   }
 
-    const { name, price, categoryId, stock } = req.body;
+    const { name, price, categoryId, stock, description, rating} = req.body;
 
     // Obtener la URL de la imagen
     const imageUrl = `/uploads/${req.file.filename}`;
@@ -51,7 +51,7 @@ router.post('/products', authenticateToken, upload.single('image'), async (req, 
         stock: parseInt(stock),
         categoryId: parseInt(categoryId),
         description,
-        rating,
+        rating: parseFloat(rating),
         imageUrl  // Aquí se guarda la URL de la imagen
       }
     });
