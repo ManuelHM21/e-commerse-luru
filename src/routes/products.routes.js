@@ -50,6 +50,8 @@ router.post('/products', authenticateToken, upload.single('image'), async (req, 
         price: parseInt(price),
         stock: parseInt(stock),
         categoryId: parseInt(categoryId),
+        description,
+        rating,
         imageUrl  // Aquí se guarda la URL de la imagen
       }
     });
