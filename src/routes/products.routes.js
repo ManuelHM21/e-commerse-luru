@@ -89,7 +89,7 @@ router.put('/products/:id', upload.single('image'), async (req, res) => {
         if (!updatedProduct) return res.status(404).json({ error: "no se encontró el producto" });
         res.json(updatedProduct);
     } catch (error) {
-        console.error(error);
+        console.error("Error al actualizar el producto:", error);
         res.status(500).json({ error: 'Error interno del servidor' });
     }
 });

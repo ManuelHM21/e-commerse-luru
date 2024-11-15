@@ -5,8 +5,9 @@ import fs from 'fs';
 // Asegúrate de que la carpeta de destino exista
 if (!fs.existsSync('uploads')) {
   fs.mkdirSync('uploads');
-}else{
-    console.log("no existe la carpeta");
+  console.log("Carpeta 'uploads' creada.");
+} else {
+  console.log("La carpeta 'uploads' ya existe.");
 }
 
 // Configuración de multer

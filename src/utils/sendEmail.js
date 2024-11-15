@@ -11,7 +11,7 @@ const sendVerificationEmail = async (email, verificationToken) => {
       <section style="max-width: 640px; margin: auto; padding: 16px; background-color: #ffffff; color: #333333;">
         <header>
           <div>
-            <h1 style="width: auto; height: 28px; text: 50px; font-weight: 700;">EL CHÓCHO</h1>
+            <h1 style="width: auto; height: 28px; text: 50px; font-weight: 700;">Cule titulo</h1>
           </div>
         </header>
 
