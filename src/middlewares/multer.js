@@ -10,20 +10,18 @@ if (!fs.existsSync('uploads')) {
   console.log("La carpeta 'uploads' ya existe.");
 }
 
-// Configuración de multer
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, 'uploads/'); // Carpeta donde se guardarán las imágenes
-  },
-  filename: (req, file, cb) => {
-    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
-    cb(null, file.fieldname + '-' + uniqueSuffix + path.extname(file.originalname));
-  }
-});
+const storage = multer.memoryStorage();
 
 const upload = multer({
-  storage: storage,
-  limits: { fileSize: 5 * 1024 * 1024 }, // Limitar el tamaño del archivo a 5MB
+  storage,
+  limits: { fileSize: 5 * 1024 * 1024 }, // Límite de tamaño: 5MB
+  fileFilter: (req, file, cb) => {
+    const allowedTypes = ['image/jpeg', 'image/png'];
+    if (!allowedTypes.includes(file.mimetype)) {
+      return cb(new Error('Tipo de archivo no permitido'), false);
+    }
+    cb(null, true);
+  },
 });
 
 // Exportar el middleware para usarlo en las rutas

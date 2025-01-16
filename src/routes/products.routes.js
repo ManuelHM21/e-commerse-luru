@@ -35,6 +35,27 @@ router.get("/products/:id", async (req, res) => {
   res.json(productoId);
 });
 
+router.get('/products/:id/image', async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const product = await prisma.product.findUnique({
+      where: { id: parseInt(id, 10) },
+    });
+
+    if (!product || !product.image) {
+      return res.status(404).json({ error: 'Producto o imagen no encontrada' });
+    }
+
+    // Configurar el tipo de contenido y enviar la imagen
+    res.set('Content-Type', 'image/png'); // Cambia según el tipo MIME esperado
+    res.send(product.image);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Error interno del servidor' });
+  }
+});
+
 router.use(authenticateToken);
 
 // Ruta protegida para crear productos y subir imagen
@@ -46,9 +67,6 @@ router.post("/products", upload.single("image"), async (req, res) => {
 
     const { name, price, categoryId, stock, description, rating } = req.body;
 
-    // Obtener la URL de la imagen
-    const imageUrl = `/uploads/${req.file.filename}`;
-
     // Crear el producto en la base de datos
     const newProduct = await prisma.product.create({
       data: {
@@ -58,7 +76,7 @@ router.post("/products", upload.single("image"), async (req, res) => {
         categoryId: parseInt(categoryId),
         description,
         rating: parseFloat(rating),
-        imageUrl, // Aquí se guarda la URL de la imagen
+        image: req.file.buffer
       },
     });
 
