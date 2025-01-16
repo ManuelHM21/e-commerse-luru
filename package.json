@@ -4,9 +4,10 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
+    "dev": "prisma generate && prisma migrate dev && nodemon index.js",
+    "start": "prisma generate && node index.js",
     "migrate": "prisma migrate deploy",
-    "generate": "prisma generate",
-    "start": "prisma generate && prisma migrate deploy && node index.js"
+    "generate": "prisma generate"
   },
   "keywords": [],
   "author": "",
